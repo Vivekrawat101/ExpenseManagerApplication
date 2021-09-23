@@ -1,10 +1,16 @@
+
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import "./NewExpense.css"
-const NewExpense = () => {
+const NewExpense = (props) => {
+    const submitExpenseDataHandler = (enteredExpenseData) =>{
+
+       
+        props.onAddExpense(enteredExpenseData);
+    }
     return (
         <div className = "new-expense">
-            <ExpenseForm> </ExpenseForm>
+            <ExpenseForm onSubmitNewExpenseData = {submitExpenseDataHandler} Index = {props.Index} />
         </div>
     );
 }
