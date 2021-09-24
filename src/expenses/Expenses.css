@@ -5,3 +5,9 @@
     width: 50rem;
     max-width: 95%;
   }
+  .noRecordFound{
+    color: rgb(208, 255, 0);
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+  }

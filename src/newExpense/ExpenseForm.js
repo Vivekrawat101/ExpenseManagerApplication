@@ -5,10 +5,10 @@ import "./ExpenseForm.css";
 const ExpenseForm = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
-    
-    const [enteredAmount , setEnteredAmount] = useState('');
 
-    const [enteredDate , setEnteredDate] = useState('');
+    const [enteredAmount, setEnteredAmount] = useState('');
+
+    const [enteredDate, setEnteredDate] = useState('');
 
     //   const [userInput, setUserInput] = useState({
     //       enteredTitle: '',
@@ -19,7 +19,7 @@ const ExpenseForm = (props) => {
 
     const titleChangedHandler = (event) => {
         setEnteredTitle(event.target.value)
-        
+
         // setUserInput({
         //     ...userInput,
         //     enteredTitle: event.target.value
@@ -31,50 +31,52 @@ const ExpenseForm = (props) => {
     };
 
     const amountChangedHandler = (event) => {
-        setEnteredAmount(event.target.value) 
-        
+        setEnteredAmount(event.target.value)
+
         // setUserInput({
         //     ...userInput,
         //     enteredAmount: event.target.value
         // })
-    
+
         // setUserInput((prevState)=>{
         //     return{...prevState, enteredAmount: event.target.value}
         // })
-    
+
     };
 
     const dateChangedHandler = (event) => {
         setEnteredDate(event.target.value)
-        
+
         // setUserInput({
         //     ...userInput,
         //     enteredDate:event.target.value
         // })
-       
+
         // setUserInput((prevState)=>{
         //     return {...prevState, enteredDate: event.target.value}
         // })
-    
+
     };
-     
+
     const submitHandler = (event) => {
-       event.preventDefault();
+        event.preventDefault();
 
-       const expenseData = {
-           id : props.Index ,
-           title: enteredTitle,
-           amount: enteredAmount,
-           date: new Date(enteredDate)
-       };
+        const expenseData = {
+            id: props.Index,
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate)
+        };
 
 
-       props.onSubmitNewExpenseData(expenseData);
-       setEnteredTitle('');
-       setEnteredAmount('');
-       setEnteredDate('');
+        props.onSubmitNewExpenseData(expenseData);
+        setEnteredTitle('');
+        setEnteredAmount('');
+        setEnteredDate('');
     }
-
+    const isCanceled = () => {
+        props.cancelAddingNewExpense();
+    }
     return (
 
         <form onSubmit={submitHandler}>
@@ -89,9 +91,11 @@ const ExpenseForm = (props) => {
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type='date' min="2021-01-01" max="2022-01-01" value={enteredDate} onChange = {dateChangedHandler} />
+                    <input type='date' min="2021-01-01" max="2022-01-01" value={enteredDate} onChange={dateChangedHandler} />
                 </div>
-
+                <div className="new-expense__actions">
+                    <button variant="contained" type="button" onClick={isCanceled}>Cancel</button>
+                </div>
                 <div className="new-expense__actions">
                     <button variant="contained" type="submit">Add Expense</button>
                 </div>
