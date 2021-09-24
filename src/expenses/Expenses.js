@@ -5,24 +5,30 @@ import "./Expenses.css";
 import Card from "../card/Card";
 export default function Expenses(props) {
 
-   const [filterInput, setFilterInput] = useState('2021');
+   const [FilteredYear, setFilteredYear] = useState('2021');
 
-    const getFilterInput = (input) => {
-     setFilterInput(input);
+    const getFilterInput = (Year) => {
+        
+     setFilteredYear(Year); //this will render the selected value to drop down menu button
+
     }
-   
+    
+   const filteredExpenses = props.item.filter(expense => {
+         return expense.date.getFullYear().toString() === FilteredYear;
+    });
 
     return (
         <Card className = "expenses">
-            <ExpenseFilter selected={filterInput} onChangeFilter = {getFilterInput}/>
+            <ExpenseFilter selected={FilteredYear} onChangeFilter = {getFilterInput}/>
           
-            {props.item.map(expense => (
-                
+            {   filteredExpenses.map(expense => (
+               
                 <ExpenseItem 
                 key={expense.id}
                 title={expense.title}
                 amount={expense.amount}
                 date={expense.date}
+                
                 />
             ))}
         </Card>)
