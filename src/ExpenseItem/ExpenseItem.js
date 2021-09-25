@@ -7,7 +7,7 @@ export default function ExpenseItem(props) {
     // setTitle will be executed when clickhandler runs
     // const [title, setTitle] = useState(props.title);
 
-console.log(props.date);
+
     return (
         <Card className="expense-item">
             <ExpenseDate date={props.date} />
